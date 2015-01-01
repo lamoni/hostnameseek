@@ -1,0 +1,21 @@
+{
+    "name": "lamoni/hostnameseek",
+    "description": "A PHP class for dealing with hostnames",
+    "license": "MIT",
+    "require": {
+        "php": ">= 5.4.16"
+    },
+    "authors": [
+        { 
+            "name": "Lamoni Finlayson",
+            "email": "lamonif@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/lamoni/hostnameseek",
+    "keywords": [
+        "php",
+        "hostnames",
+        "hosts file",
+        "hosts"
+    ]
+}
