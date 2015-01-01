@@ -63,10 +63,14 @@ class HostnameSeek
                 foreach ($tempCleansedHosts[$host[0]] as $tempHost) {
 
                     if (strpos($tempHost, "#") === false && strpos($tempHost, "localhost") === false) {
+
                         $cleansedHosts[$tempHost] = $host[0];
+
                     }
                     else {
+
                         break;
+
                     }
 
                 }
@@ -115,6 +119,7 @@ class HostnameSeek
 
     public function GetIPByHostname($name)
     {
+
         $name = strtolower($name);
 
         if (!isset($this->hosts[$name])) {
@@ -129,6 +134,7 @@ class HostnameSeek
 
     public function DoesHostnameExist($name)
     {
+        
         if (!$this->GetIPByHostname($name)) {
 
             return false;
