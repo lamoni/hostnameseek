@@ -145,4 +145,26 @@ class HostnameSeek
 
     }
 
+    public function GetHostnamesMatching(array $matches)
+    {
+
+        $matchedHosts = array();
+
+        foreach ($this->hosts as $hostname=>$ip) {
+
+            foreach ($matches as $match) {
+
+                if (strpos($hostname, $match) !== false) {
+
+                    $matchedHosts[] = $hostname;
+                    
+                }
+
+            }
+
+        }
+
+        return $matchedHosts;
+    }
+
 }
