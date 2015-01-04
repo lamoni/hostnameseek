@@ -92,7 +92,7 @@ class HostnameSeek
 
                 foreach ($matches as $match) {
 
-                    if (strpos($hostname, $match)) {
+                    if (strpos($hostname, $match) !== false) {
 
                         $tempCleansedHosts[$hostname] = $alias;
 
@@ -157,7 +157,7 @@ class HostnameSeek
                 if (strpos($hostname, $match) !== false) {
 
                     $matchedHosts[] = $hostname;
-                    
+
                 }
 
             }
