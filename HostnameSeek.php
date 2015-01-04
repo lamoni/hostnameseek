@@ -92,7 +92,12 @@ class HostnameSeek
 
                 foreach ($matches as $match) {
 
-                    if (strpos($hostname, $match) !== false) {
+                    /*
+                     * Wildcard indicator... be lenient (e.g. 'lab1' will match 'lab1' and 'lab10'
+                     */
+                    if ($hostname === $match ||
+                        (substr($match, -1) === "*" && strpos($hostname, rtrim($match, "*")) !== false)
+                        ) {
 
                         $tempCleansedHosts[$hostname] = $alias;
 
