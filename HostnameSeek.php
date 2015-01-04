@@ -83,7 +83,8 @@ class HostnameSeek
          * Find matching, if any
          */
 
-
+        $matches = array_filter($matches);
+        
         if (count($matches) !== 0) {
 
             $tempCleansedHosts = array();
