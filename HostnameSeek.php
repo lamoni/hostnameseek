@@ -79,12 +79,13 @@ class HostnameSeek
 
         }
 
+
         /*
          * Find matching, if any
          */
 
         $matches = array_filter($matches);
-        
+
         if (count($matches) !== 0) {
 
             $tempCleansedHosts = array();
@@ -96,9 +97,8 @@ class HostnameSeek
                     /*
                      * Wildcard indicator... be lenient (e.g. 'lab1' will match 'lab1' and 'lab10'
                      */
-                    if ($hostname === $match ||
-                        (substr($match, -1) === "*" && strpos($hostname, rtrim($match, "*")) !== false)
-                        ) {
+
+                    if (preg_match("/$match/i", $hostname) === 1) {
 
                         $tempCleansedHosts[$hostname] = $alias;
 
@@ -160,9 +160,9 @@ class HostnameSeek
 
             foreach ($matches as $match) {
 
-                if (strpos($hostname, $match) !== false) {
+                if (preg_match("/.*$match.*/i", $hostname) === 1) {
 
-                    $matchedHosts[] = $hostname;
+                    $matchedHosts[] = array($hostname => $ip);
 
                 }
 
