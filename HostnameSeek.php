@@ -144,6 +144,7 @@ class HostnameSeek
 
         }
 
+        ksort($cleansedHosts);
 
         $this->hosts = $cleansedHosts;
 
