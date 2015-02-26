@@ -7,7 +7,7 @@ class HostnameSeek
 
     protected $hosts = array();
 
-    public function __construct($hostsFile = '/etc/hosts', array $matches=array())
+    public function __construct($hostsFile = '/etc/hosts', array $matches=array(), array $blacklist=array())
     {
 
         /**
@@ -111,6 +111,39 @@ class HostnameSeek
             $cleansedHosts = $tempCleansedHosts;
 
         }
+
+        /*
+         * Remove blacklist items, if any
+         */
+
+        $blacklist = array_filter($blacklist);
+
+        if (count($blacklist) !== 0) {
+
+            $tempCleansedHosts = array();
+
+            foreach ($cleansedHosts as $hostname=>$alias) {
+
+                foreach ($blacklist as $match) {
+
+                    /*
+                     * Wildcard indicator... be lenient (e.g. 'lab1' will match 'lab1' and 'lab10'
+                     */
+
+                    if (preg_match("/$match/i", $hostname) !== 1) {
+
+                        $tempCleansedHosts[$hostname] = $alias;
+
+                    }
+
+                }
+
+            }
+
+            $cleansedHosts = $tempCleansedHosts;
+
+        }
+
 
         $this->hosts = $cleansedHosts;
 
